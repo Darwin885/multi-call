@@ -17,7 +17,7 @@ export interface ISubscribeParam extends Omit<IGlobalState, 'callback' | 'key'> 
 
 
 
-// this key is used to update contractFunctions
+// this key is used to identify contract calls
 export const createKey = ({ address, functionName, args }: Omit<IGlobalState, 'abi' | 'key' | 'callback'>) => {
     const key = JSON.stringify({ address, functionName, args })
 
@@ -29,8 +29,8 @@ export const createKey = ({ address, functionName, args }: Omit<IGlobalState, 'a
 const activeKeys: IActiveKeys[] = []
 
 
-// if a fn with same args is already subscribed by another components then counter will be increased and returned.
-// if a it's a new fn then counter value zero is returned
+// if a contract call with same args is already subscribed by other components then counter will be increased and returned.
+// if a it's a new contract call then counter value zero is returned
 const _updateAndGetCounter = (key: string) => {
     const index = activeKeys.findIndex(a => a.key === key)
 
@@ -145,7 +145,7 @@ const useMultiCall = (keys: IActiveKeys[], componentKeyState: Dispatch<SetStateA
 
 
     /**
-     * @dev stops 
+     * @dev updates global state so as to stop fetching data
      * @param param array of objects containing key and counter
      * @returns error message if a inactive key is passed
      */
@@ -172,6 +172,7 @@ const useMultiCall = (keys: IActiveKeys[], componentKeyState: Dispatch<SetStateA
                 }
 
                 // if obj has only one callback_fn remove the entire obj
+
                 if (new_globalState[index].callback.length === 1) {
                     new_globalState.splice(index, 1)
                     new_globalState = new_globalState.filter(obj => obj.key !== p.key)
