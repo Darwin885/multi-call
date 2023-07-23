@@ -1,3 +1,2 @@
 # multi-call
-custom multi call hook
-I haven't made doc yet. I will ry to complete before 11am.
+I haven't made doc yet. I will try to complete before 11am.
