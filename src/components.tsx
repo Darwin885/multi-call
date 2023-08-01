@@ -60,7 +60,7 @@ export const Component2 = () => {
         unSubscribe(activeKeys)
     }
 
-    // console.log('component 2.................', functionsResult)
+    // console.log('component 2.................', callsResult)
     return (
         <div>
             <h3>Component 2 - function 1 with args1</h3>
@@ -97,7 +97,7 @@ export const Component3 = () => {
     }
 
 
-    // console.log('component 3 rendered......................', functionsResult)
+    // console.log('component 3 rendered......................', callsResult)
 
 
     return (
